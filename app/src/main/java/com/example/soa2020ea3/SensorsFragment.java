@@ -104,13 +104,11 @@ public class SensorsFragment extends Fragment implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-
         float[] values = event.values;
-        Log.d("Acelerometro", "Ejecutó el acelerómetro con estos valores. x: " + values[0] + ", y: " + values[1] + ", z: " + values[2]);
+
         xValue.setText(String.valueOf(values[0]));
         yValue.setText(String.valueOf(values[1]));
         zValue.setText(String.valueOf(values[2]));
-
     }
 
     @Override

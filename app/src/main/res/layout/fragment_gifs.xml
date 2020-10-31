@@ -17,10 +17,11 @@
         android:inputType="text"
         android:fontFamily="@font/roboto_regular"
         android:background="@drawable/et_custom"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:text=""/>
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_search_gifs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_custom"
@@ -39,7 +40,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_login"
+        android:layout_below="@+id/btn_search_gifs"
         android:text="Prueba" />
 
 </RelativeLayout>
