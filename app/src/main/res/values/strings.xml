@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Decibeles</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="swipe_left_for_register">Desliza a la izquierda para registrarte</string>
+    <string name="login">Ingresar</string>
+    <string name="search">Buscar GIFs</string>
+    <string name="password">Contraseña</string>
+    <string name="dni">DNI</string>
+    <string name="e_mail">Correo electrónico</string>
+    <string name="tag">Let\'s join us and \nBuild your relationship with others</string>
+    <string name="swipe_right_for_login">Desliza a la derecha para ingresar</string>
+    <string name="register">Registrarme</string>
+    <string name="re_type_password">Confirmar contraseña</string>
+    <string name="your_name">Nombre</string>
+    <string name="your_lastname">Apellido</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="placeholder_buscar_gifs">gatos, perros, baile...</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+</resources>
