@@ -83,7 +83,7 @@ public class GifsFragment extends Fragment {
         if (lastQuery != null) et_query.setText(lastQuery);
 
         btn_search_gifs.setOnClickListener((val) -> {
-            if (!et_query.getText().toString().matches("") && !et_query.getText().toString().matches(lastQuery)) {
+            if (!et_query.getText().toString().matches("") && !et_query.getText().toString().matches(lastQuery != null ? lastQuery : "")) {
                 buscarGifs(et_query.getText().toString());
                 btn_search_gifs.setEnabled(false);
                 btn_search_gifs.setClickable(false);
