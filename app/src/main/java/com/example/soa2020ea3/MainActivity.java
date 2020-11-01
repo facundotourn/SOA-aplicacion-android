@@ -1,7 +1,11 @@
 package com.example.soa2020ea3;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.soa2020ea3.model.AuthTokens;
 import com.example.soa2020ea3.model.EventRequestBody;
 import com.example.soa2020ea3.model.EventResponse;
 import com.example.soa2020ea3.services.EventService;
@@ -67,6 +71,13 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_logout:
                 // accion
+                SharedPreferences preferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);
+                preferences.edit().remove("token").remove("refreshToken").commit();
+
+                Intent i = new Intent(this, AuthActivity.class);
+                startActivity(i);
+                finish();
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -113,7 +124,10 @@ public class MainActivity extends AppCompatActivity {
         Retrofit retrofit = getRetrofitInstance("http://so-unlam.net.ar/api/api/");
         EventService eventService = retrofit.create(EventService.class);
 
-        Call<EventResponse> call = eventService.postEvent(new EventRequestBody("TEST", type, description));
+        SharedPreferences preferences = this.getSharedPreferences("MY_APP", Context.MODE_PRIVATE);
+        String token = preferences.getString("token",null);
+
+        Call<EventResponse> call = eventService.postEvent(new EventRequestBody("PROD", type, description), "Bearer " + token);
         call.enqueue(new Callback<EventResponse>() {
             @Override
             public void onResponse(Call<EventResponse> call, Response<EventResponse> response) {

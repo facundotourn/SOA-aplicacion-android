@@ -48,7 +48,7 @@ public class LoginFragment extends Fragment {
 
         login_button.setOnClickListener((val) -> {
             loguear(et_email.getText().toString(), et_password.getText().toString());
-            Toast.makeText(getActivity(),"Ingresar...",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"Ingresando...",Toast.LENGTH_SHORT).show();
         });
 
         return rootView;
