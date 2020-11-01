@@ -5,80 +5,94 @@
         android:layout_height="match_parent"
         tools:context=".SensorsFragment">
 
-    <TextView
-        android:id="@+id/title_acelerometro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="17sp"
-        android:fontFamily="@font/roboto_regular"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="50dp"
-        android:text="Acelerometro" />
 
-    <TextView
-        android:id="@+id/txt_x"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:fontFamily="@font/roboto_regular"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/title_acelerometro"
-        android:text="Valor en X:" />
-
-    <TextView
-        android:id="@+id/txt_x_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:fontFamily="@font/roboto_regular"
-        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/txt_x"
-        android:text="0" />
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+            <TextView
+                android:id="@+id/title_acelerometro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginStart="25dp"
+                android:layout_marginBottom="50dp"
+                android:text="Acelerometro" />
 
-    <TextView
-        android:id="@+id/txt_y"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:fontFamily="@font/roboto_regular"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/txt_x_value"
-        android:text="Valor en Y:" />
+            <TextView
+                android:id="@+id/txt_x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/title_acelerometro"
+                android:text="Valor en X:" />
 
-    <TextView
-        android:id="@+id/txt_y_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:fontFamily="@font/roboto_regular"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/txt_y"
-        android:text="0" />
+            <TextView
+                android:id="@+id/txt_x_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/txt_x"
+                android:text="0" />
 
-    <TextView
-        android:id="@+id/txt_z"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:fontFamily="@font/roboto_regular"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/txt_y_value"
-        android:text="Valor en Z:" />
+            <TextView
+                android:id="@+id/txt_y"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/txt_x_value"
+                android:text="Valor en Y:" />
 
-    <TextView
-        android:id="@+id/txt_z_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:fontFamily="@font/roboto_regular"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/txt_z"
-        android:text="0" />
+            <TextView
+                android:id="@+id/txt_y_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/txt_y"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/txt_z"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/txt_y_value"
+                android:text="Valor en Z:" />
+
+            <TextView
+                android:id="@+id/txt_z_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/txt_z"
+                android:text="0" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
