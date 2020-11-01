@@ -106,9 +106,9 @@ public class SensorsFragment extends Fragment implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         float[] values = event.values;
 
-        xValue.setText(String.valueOf(values[0]));
-        yValue.setText(String.valueOf(values[1]));
-        zValue.setText(String.valueOf(values[2]));
+        xValue.setText(String.format("%.2f", values[0]));
+        yValue.setText(String.format("%.2f", values[1]));
+        zValue.setText(String.format("%.2f", values[2]));
     }
 
     @Override
