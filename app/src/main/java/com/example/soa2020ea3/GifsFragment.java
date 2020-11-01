@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,11 +70,13 @@ public class GifsFragment extends Fragment {
         gif_results.add((ImageView) rootView.findViewById(R.id.gif_result_5));
 
         btn_search_gifs.setOnClickListener((val) -> {
-            if (et_query.getText().toString() != "") {
+            if (!et_query.getText().toString().matches("")) {
                 buscarGifs(et_query.getText().toString());
                 btn_search_gifs.setEnabled(false);
                 btn_search_gifs.setClickable(false);
                 Toast.makeText(getActivity(),"Cargando...",Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity(),"Ingrese un término para buscar gifs",Toast.LENGTH_SHORT).show();
             }
         });
 

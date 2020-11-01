@@ -9,7 +9,6 @@ public class Usuario {
     private Integer commission;
 
     public Usuario() {
-        this.commission = 2;
     }
 
     public String getName() {

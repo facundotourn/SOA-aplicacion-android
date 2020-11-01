@@ -33,6 +33,7 @@ public class RegisterFragment extends Fragment {
     private EditText et_name;
     private EditText et_lastname;
     private EditText et_dni;
+    private EditText et_commission;
     private EditText et_email;
     private EditText et_password;
     private Button register_button;
@@ -50,6 +51,7 @@ public class RegisterFragment extends Fragment {
         this.et_name = (EditText) rootView.findViewById(R.id.et_name);
         this.et_lastname = (EditText) rootView.findViewById(R.id.et_lastname);
         this.et_dni = (EditText) rootView.findViewById(R.id.et_dni);
+        this.et_commission = (EditText) rootView.findViewById(R.id.et_commission);
         this.et_email = (EditText) rootView.findViewById(R.id.et_email);
         this.et_password = (EditText) rootView.findViewById(R.id.et_password);
         this.register_button = (Button) rootView.findViewById(R.id.btn_register);
@@ -59,6 +61,7 @@ public class RegisterFragment extends Fragment {
             usr.setName(et_name.getText().toString());
             usr.setLastname(et_lastname.getText().toString());
             usr.setDni(et_dni.getText().toString());
+            usr.setCommission(Integer.valueOf(et_commission.getText().toString()));
             usr.setEmail(et_email.getText().toString());
             usr.setPassword(et_password.getText().toString());
 
