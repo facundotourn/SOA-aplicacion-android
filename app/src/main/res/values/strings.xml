@@ -23,10 +23,7 @@
     <string name="previous">Previous</string>
 
     <string name="placeholder_buscar_gifs">gatos, perros, baile...</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="title_activity_main2">MainActivity2</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_main2">GIFSense</string>
+    <string name="tab_text_1">GIFS</string>
+    <string name="tab_text_2">SENSORES</string>
 </resources>

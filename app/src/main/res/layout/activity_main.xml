@@ -11,17 +11,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/purple_500"
         android:theme="@style/Theme.SOA2020EA3"
-        android:elevation="15dp">
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="?actionBarSize"
-            android:padding="@dimen/appbar_padding"
-            android:text="@string/app_name"
-            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+        >
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
@@ -31,6 +21,8 @@
             android:background="@color/purple_500"
             app:tabIndicatorColor="@color/white"
             app:tabSelectedTextColor="#FFFFFF"
+            app:tabTextColor="#AAAAAA"
+            android:elevation="26dp"
             />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -39,5 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+
+    </androidx.viewpager.widget.ViewPager>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

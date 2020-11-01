@@ -18,7 +18,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/Theme.SOA2020EA3.NoActionBar"></activity>
+            android:theme="@style/Theme.SOA2020EA3"></activity>
         <activity
             android:name=".AuthActivity"
             android:theme="@style/Theme.SOA2020EA3.NoActionBar">

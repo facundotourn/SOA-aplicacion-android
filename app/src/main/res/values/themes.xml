@@ -14,6 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/white</item>
         <item name="android:textAppearance">@style/MyText</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
     </style>
 
     <style name="Theme.SOA2020EA3.NoActionBar">
@@ -31,5 +32,9 @@
 
     <style name="MyText" parent="@android:style/TextAppearance">
         <item name="android:textColor">#ffffffff</item>
+    </style>
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/purple_500</item>
+        <item name="android:elevation">0dp</item>
     </style>
 </resources>
