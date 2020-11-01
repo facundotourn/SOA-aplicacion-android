@@ -12,6 +12,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
         android:layout_marginTop="10dp"
+        android:id="@+id/card_acelerometer"
         >
         <RelativeLayout
             android:layout_width="match_parent"
@@ -30,7 +31,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="25dp">
+                android:layout_marginTop="25dp"
+                android:id="@+id/linear_acelerometer_values"
+                >
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -107,6 +110,89 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_evt_acelerometro"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:padding="1dp"
+                android:background="@drawable/btn_custom"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@android:color/white"
+                android:layout_below="@+id/linear_acelerometer_values"
+                android:text="Enviar evento"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/card_acelerometer"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+            <TextView
+                android:id="@+id/title_decibeles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginStart="25dp"
+                android:text="Decibeles" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="25dp"
+                android:id="@+id/linear_decibeles_values"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_evt_decibeles"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:padding="1dp"
+                android:background="@drawable/btn_custom"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@android:color/white"
+                android:layout_below="@+id/linear_decibeles_values"
+                android:text="Enviar evento"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
