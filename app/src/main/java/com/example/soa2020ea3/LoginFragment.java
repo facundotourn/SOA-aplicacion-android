@@ -73,6 +73,8 @@ public class LoginFragment extends Fragment {
                     editor.putString("refreshToken", res.getRefreshToken());
                     editor.apply();
 
+                    enviarEvento("INGRESO", "El usuario inició sesión en su cuenta");
+
                     Intent home = new Intent(getActivity(), MainActivity.class);
                     startActivity(home);
                     getActivity().finish();
@@ -85,5 +87,10 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getActivity(),"Error interno del servidor",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void enviarEvento(String type, String description) {
+        AuthActivity authActivity = (AuthActivity) getActivity();
+        authActivity.enviarEvento(type, description);
     }
 }

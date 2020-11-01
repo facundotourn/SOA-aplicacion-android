@@ -15,9 +15,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.soa2020ea3.model.AuthTokens;
+import com.example.soa2020ea3.model.EventRequestBody;
+import com.example.soa2020ea3.model.EventResponse;
 import com.example.soa2020ea3.model.RegisterRequestBody;
 import com.example.soa2020ea3.model.Usuario;
 import com.example.soa2020ea3.services.AuthService;
+import com.example.soa2020ea3.services.EventDispatcher;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -70,7 +73,7 @@ public class RegisterFragment extends Fragment {
         Retrofit retrofit = getRetrofitInstance("http://so-unlam.net.ar/api/api/");
         AuthService authService = retrofit.create(AuthService.class);
 
-        Call<AuthTokens> call = authService.register(new RegisterRequestBody("TEST", nuevoUsuario));
+        Call<AuthTokens> call = authService.register(new RegisterRequestBody(nuevoUsuario));
         call.enqueue(new Callback<AuthTokens>() {
             @Override
             public void onResponse(Call<AuthTokens> call, Response<AuthTokens> response) {
@@ -85,6 +88,8 @@ public class RegisterFragment extends Fragment {
                     editor.putString("refreshToken", res.getRefreshToken());
                     editor.apply();
 
+                    enviarEvento("REGISTRO", "Se registro el nuevo usuario");
+
                     Intent home = new Intent(getActivity(), MainActivity.class);
                     startActivity(home);
                     getActivity().finish();
@@ -98,5 +103,10 @@ public class RegisterFragment extends Fragment {
                 Toast.makeText(getActivity(),"Error interno del servidor",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void enviarEvento(String type, String description) {
+        AuthActivity authActivity = (AuthActivity) getActivity();
+        authActivity.enviarEvento(type, description);
     }
 }

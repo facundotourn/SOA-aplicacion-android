@@ -1,5 +1,8 @@
 package com.example.soa2020ea3.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class EventRequestBody {
     private String env;
     private String type_events;
@@ -8,7 +11,13 @@ public class EventRequestBody {
     public EventRequestBody(String env, String type_events, String description) {
         this.env = env;
         this.type_events = type_events;
-        this.description = description;
+        this.description = new SimpleDateFormat("dd/MM/yyyy hh:mm").format(Calendar.getInstance().getTime()) + ": " + description;
+    }
+
+    public EventRequestBody(String type_events, String description) {
+        this.env = "PROD";
+        this.type_events = type_events;
+        this.description = new SimpleDateFormat("dd/MM/yyyy hh:mm").format(Calendar.getInstance().getTime()) + ": " + description;
     }
 
     public String getEnv() {

@@ -95,6 +95,13 @@ public class GifsFragment extends Fragment {
                             .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
                             .into(gif_results.get(i));
                 }
+
+
+                String type = "CONSULTA_GIFS";
+                String description = "El usuario consulto gifs.";
+
+                MainActivity main = (MainActivity) getActivity();
+                main.enviarEvento(type, description, false);
             }
 
             @Override

@@ -28,4 +28,14 @@ public class RegisterRequestBody {
         this.password = nuevoUsuario.getPassword();
         this.commission = nuevoUsuario.getCommission();
     }
+
+    public RegisterRequestBody(Usuario nuevoUsuario) {
+        this.env = "PROD";
+        this.name = nuevoUsuario.getName();
+        this.lastname = nuevoUsuario.getLastname();
+        this.dni = nuevoUsuario.getDni();
+        this.email = nuevoUsuario.getEmail();
+        this.password = nuevoUsuario.getPassword();
+        this.commission = nuevoUsuario.getCommission();
+    }
 }

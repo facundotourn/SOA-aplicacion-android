@@ -112,21 +112,18 @@ public class SensorsFragment extends Fragment implements SensorEventListener {
 
         btn_acelerometro.setOnClickListener((val) -> {
             String type = "ACELEROMETRO_VALUES";
-            String description = new SimpleDateFormat("dd/MM/yyyy hh:mm").format(Calendar.getInstance().getTime()) + ": "
-                    + "Valor en X: " + xValue.getText().toString() + ", valor en Y: " + yValue.getText().toString() + ", valor en Z: " + zValue.getText().toString();
-
+            String description = "Valor en X: " + xValue.getText().toString() + ", valor en Y: " + yValue.getText().toString() + ", valor en Z: " + zValue.getText().toString();
 
             MainActivity main = (MainActivity) getActivity();
-            main.enviarEvento(type, description);
+            main.enviarEvento(type, description, true);
         });
 
         btn_luz.setOnClickListener((val) -> {
             String type = "LIGHT_VALUES";
-            String description = new SimpleDateFormat("dd/MM/yyyy hh:mm").format(Calendar.getInstance().getTime()) + ": "
-                    + lumenValue.getText().toString() + " lumen por metro cuadrado";
+            String description = lumenValue.getText().toString() + " lumen por metro cuadrado";
 
             MainActivity main = (MainActivity) getActivity();
-            main.enviarEvento(type, description);
+            main.enviarEvento(type, description, true);
         });
 
         return rootView;

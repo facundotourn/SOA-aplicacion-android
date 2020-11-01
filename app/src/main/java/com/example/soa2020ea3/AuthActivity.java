@@ -15,12 +15,20 @@ import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.soa2020ea3.model.EventRequestBody;
+import com.example.soa2020ea3.model.EventResponse;
 import com.example.soa2020ea3.network.CheckNetwork;
+import com.example.soa2020ea3.services.EventDispatcher;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AuthActivity extends AppCompatActivity {
     private TextView tv_connection_status;
@@ -108,5 +116,21 @@ public class AuthActivity extends AppCompatActivity {
         String retrivedToken  = preferences.getString("token",null);
 
         return retrivedToken != null;
+    }
+
+    public void enviarEvento(String type, String description) {
+        EventRequestBody requestBody = new EventRequestBody(type, description);
+
+        Callback<EventResponse> callback = new Callback<EventResponse>() {
+            @Override
+            public void onResponse(Call<EventResponse> call, Response<EventResponse> response) {
+            }
+
+            @Override
+            public void onFailure(Call<EventResponse> call, Throwable t) {
+            }
+        };
+
+        EventDispatcher.enviarEvento(this, requestBody, callback);
     }
 }

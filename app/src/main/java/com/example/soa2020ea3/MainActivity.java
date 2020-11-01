@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.example.soa2020ea3.model.AuthTokens;
 import com.example.soa2020ea3.model.EventRequestBody;
 import com.example.soa2020ea3.model.EventResponse;
+import com.example.soa2020ea3.services.EventDispatcher;
 import com.example.soa2020ea3.services.EventService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -70,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_logout:
-                // accion
+                enviarEvento("CIERRE_SESIÓN", "El usuario cerró la sesión de su cuenta", false);
+
                 SharedPreferences preferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);
                 preferences.edit().remove("token").remove("refreshToken").commit();
 
@@ -120,24 +122,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void enviarEvento(String type, String description) {
-        Retrofit retrofit = getRetrofitInstance("http://so-unlam.net.ar/api/api/");
-        EventService eventService = retrofit.create(EventService.class);
+    public void enviarEvento(String type, String description, Boolean showToast) {
+        EventRequestBody requestBody = new EventRequestBody(type, description);
 
-        SharedPreferences preferences = this.getSharedPreferences("MY_APP", Context.MODE_PRIVATE);
-        String token = preferences.getString("token",null);
-
-        Call<EventResponse> call = eventService.postEvent(new EventRequestBody("PROD", type, description), "Bearer " + token);
-        call.enqueue(new Callback<EventResponse>() {
+        Callback<EventResponse> callback = new Callback<EventResponse>() {
             @Override
             public void onResponse(Call<EventResponse> call, Response<EventResponse> response) {
-                Toast.makeText(MainActivity.this, "Evento enviado.", Toast.LENGTH_SHORT).show();
+                if (showToast) {
+                    Toast.makeText(MainActivity.this, "Evento enviado.", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<EventResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Ocurrió un error al intentar enviar el evento", Toast.LENGTH_SHORT).show();
+                if (showToast) {
+                    Toast.makeText(MainActivity.this, "Ocurrió un error al intentar enviar el evento", Toast.LENGTH_SHORT).show();
+                }
             }
-        });
+        };
+
+        EventDispatcher.enviarEvento(this, requestBody, callback);
     }
 }
