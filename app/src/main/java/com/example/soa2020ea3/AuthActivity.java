@@ -46,7 +46,7 @@ public class AuthActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (isUserLoggedIn()) {
+        if (CheckNetwork.isInternetAvailable(this) && isUserLoggedIn()) {
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
             finish();

@@ -56,7 +56,6 @@ public class GifsFragment extends Fragment {
 
         et_query = (EditText) rootView.findViewById(R.id.et_gif_query);
         btn_search_gifs = (Button) rootView.findViewById(R.id.btn_search_gifs);
-        txt_prueba = (TextView) rootView.findViewById(R.id.txt_prueba);
 
         gif_results = new ArrayList<ImageView>();
         gif_results.add((ImageView) rootView.findViewById(R.id.gif_result_1));

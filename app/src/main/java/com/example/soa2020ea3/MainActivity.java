@@ -73,11 +73,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_logout:
                 enviarEvento("CIERRE_SESIÓN", "El usuario cerró la sesión de su cuenta", false);
 
-                SharedPreferences preferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);
-                preferences.edit().remove("token").remove("refreshToken").commit();
-
-                Intent i = new Intent(this, AuthActivity.class);
-                startActivity(i);
+                cerrarSesion();
                 finish();
 
                 return true;
@@ -142,5 +138,13 @@ public class MainActivity extends AppCompatActivity {
         };
 
         EventDispatcher.enviarEvento(this, requestBody, callback);
+    }
+
+    public void cerrarSesion() {
+        SharedPreferences preferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);
+        preferences.edit().remove("token").remove("refreshToken").commit();
+
+        Intent i = new Intent(this, AuthActivity.class);
+        startActivity(i);
     }
 }
