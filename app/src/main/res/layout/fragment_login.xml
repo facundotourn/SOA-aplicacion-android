@@ -14,17 +14,6 @@
         android:fontFamily="@font/indigo_daisy"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="10dp"
-        android:layout_above="@id/tv_subtitle"/>
-
-    <TextView
-        android:id="@+id/tv_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tag"
-        android:textSize="17sp"
-        android:fontFamily="@font/roboto_regular"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="50dp"
         android:layout_above="@id/et_login_email"/>
 
     <EditText
@@ -34,6 +23,7 @@
         android:hint="@string/e_mail"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginTop="35dp"
         android:padding="15dp"
         android:inputType="textEmailAddress"
         android:fontFamily="@font/roboto_regular"

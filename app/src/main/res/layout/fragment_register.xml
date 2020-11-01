@@ -19,21 +19,12 @@
         android:fontFamily="@font/indigo_daisy"
         android:layout_marginTop="60dp"/>
 
-    <TextView
-        android:id="@+id/tv_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tag"
-        android:textSize="17sp"
-        android:fontFamily="@font/roboto_regular"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="50dp"/>
-
     <EditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/your_name"
+        android:layout_marginTop="35dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"

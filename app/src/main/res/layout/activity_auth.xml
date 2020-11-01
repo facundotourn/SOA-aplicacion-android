@@ -5,9 +5,28 @@
     android:layout_height="match_parent"
     tools:context=".AuthActivity">
 
+    <TextView
+        android:id="@+id/text_connection_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Conexión a internet disponible"
+        android:layout_marginTop="5dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/text_batery_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="80% de batería"
+        android:layout_below="@+id/text_connection_status"
+        android:layout_marginTop="5dp"
+        android:gravity="center"/>
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+    </androidx.viewpager.widget.ViewPager>
 
 </RelativeLayout>
