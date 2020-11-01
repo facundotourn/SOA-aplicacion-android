@@ -140,48 +140,50 @@
             android:layout_height="wrap_content"
             android:padding="20dp">
             <TextView
-                android:id="@+id/title_decibeles"
+                android:id="@+id/title_light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:fontFamily="@font/roboto_regular"
                 android:layout_marginStart="25dp"
-                android:text="Decibeles" />
+                android:text="Luz" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="25dp"
-                android:id="@+id/linear_decibeles_values"
+                android:id="@+id/linear_light_values"
                 >
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                </LinearLayout>
+                    <TextView
+                        android:id="@+id/txt_lx_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="26sp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="20dp"
+                        android:text="0" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-
+                    <TextView
+                        android:id="@+id/txt_lx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:layout_marginStart="25dp"
+                        android:text="lumen/m²" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_evt_decibeles"
+                android:id="@+id/btn_evt_light"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:padding="1dp"
@@ -191,7 +193,7 @@
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/roboto_regular"
                 android:textColor="@android:color/white"
-                android:layout_below="@+id/linear_decibeles_values"
+                android:layout_below="@+id/linear_light_values"
                 android:text="Enviar evento"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import com.example.soa2020ea3.ui.main.SectionsPagerAdapter;
 
@@ -69,5 +70,9 @@ public class MainActivity extends AppCompatActivity {
             }
             return title;
         }
+    }
+
+    public void enviarEvento(String type, String description) {
+        Log.d("VOY A ENVIAR UN EVENTO", description);
     }
 }

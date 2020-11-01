@@ -11,29 +11,34 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.service.autofill.TextValueSanitizer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import static android.content.Context.SENSOR_SERVICE;
 import static androidx.core.content.ContextCompat.getSystemService;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SensorsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SensorsFragment extends Fragment implements SensorEventListener {
     private SensorManager mSensorManager;
-    private Sensor mSensor;
+    private Sensor mSensorAcelerometro;
+    private Sensor mSensorLuz;
     private Activity mActivity;
 
     private TextView xValue;
     private TextView yValue;
     private TextView zValue;
+    private Button btn_acelerometro;
+
+    private TextView lumenValue;
+    private Button btn_luz;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -79,9 +84,11 @@ public class SensorsFragment extends Fragment implements SensorEventListener {
         super.onCreate(savedInstanceState);
 
         mSensorManager = (SensorManager) mActivity.getSystemService(Context.SENSOR_SERVICE);
-        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mSensorAcelerometro = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mSensorLuz = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
-        mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mSensorAcelerometro, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mSensorLuz, SensorManager.SENSOR_DELAY_NORMAL);
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -98,6 +105,29 @@ public class SensorsFragment extends Fragment implements SensorEventListener {
         xValue = (TextView) rootView.findViewById(R.id.txt_x_value);
         yValue = (TextView) rootView.findViewById(R.id.txt_y_value);
         zValue = (TextView) rootView.findViewById(R.id.txt_z_value);
+        lumenValue  = (TextView) rootView.findViewById(R.id.txt_lx_value);
+
+        btn_acelerometro = (Button) rootView.findViewById(R.id.btn_evt_acelerometro);
+        btn_luz = (Button) rootView.findViewById(R.id.btn_evt_light);
+
+        btn_acelerometro.setOnClickListener((val) -> {
+            String type = "ACELEROMETRO_VALUES";
+            String description = new SimpleDateFormat("dd/MM/yyyy hh:mm").format(Calendar.getInstance().getTime()) + ": "
+                    + "Valor en X: " + xValue.getText().toString() + ", valor en Y: " + yValue.getText().toString() + ", valor en Z: " + zValue.getText().toString();
+
+
+            MainActivity main = (MainActivity) getActivity();
+            main.enviarEvento(type, description);
+        });
+
+        btn_luz.setOnClickListener((val) -> {
+            String type = "LIGHT_VALUES";
+            String description = new SimpleDateFormat("dd/MM/yyyy hh:mm").format(Calendar.getInstance().getTime()) + ": "
+                    + lumenValue.getText().toString() + " lumen por metro cuadrado";
+
+            MainActivity main = (MainActivity) getActivity();
+            main.enviarEvento(type, description);
+        });
 
         return rootView;
     }
@@ -106,9 +136,19 @@ public class SensorsFragment extends Fragment implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         float[] values = event.values;
 
-        xValue.setText(String.format("%.2f", values[0]));
-        yValue.setText(String.format("%.2f", values[1]));
-        zValue.setText(String.format("%.2f", values[2]));
+        switch (event.sensor.getType()) {
+            case Sensor.TYPE_ACCELEROMETER:
+                xValue.setText(String.format("%.2f", values[0]));
+                yValue.setText(String.format("%.2f", values[1]));
+                zValue.setText(String.format("%.2f", values[2]));
+
+                break;
+            case Sensor.TYPE_LIGHT:
+                lumenValue.setText(String.format("%.2f", values[0]));
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
