@@ -1,6 +1,8 @@
 package com.example.soa2020ea3;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -61,9 +63,19 @@ public class LoginFragment extends Fragment {
             @Override
             public void onResponse(Call<AuthTokens> call, Response<AuthTokens> response) {
                 if (response.body() != null) {
+                    AuthTokens res = (AuthTokens) response.body();
+
                     Toast.makeText(getActivity(),"Se ingresó correctamente",Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences preferences = getActivity().getSharedPreferences("MY_APP", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("token", res.getToken());
+                    editor.putString("refreshToken", res.getRefreshToken());
+                    editor.apply();
+
                     Intent home = new Intent(getActivity(), MainActivity.class);
                     startActivity(home);
+                    getActivity().finish();
                 } else
                     Toast.makeText(getActivity(),"Error en las credenciales",Toast.LENGTH_SHORT).show();
             }

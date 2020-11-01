@@ -1,5 +1,8 @@
 package com.example.soa2020ea3;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -71,8 +74,21 @@ public class RegisterFragment extends Fragment {
         call.enqueue(new Callback<AuthTokens>() {
             @Override
             public void onResponse(Call<AuthTokens> call, Response<AuthTokens> response) {
-                if (response.body() != null)
+                if (response.body() != null) {
+                    AuthTokens res = (AuthTokens) response.body();
+
                     Toast.makeText(getActivity(),"Se registró correctamente",Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences preferences = getActivity().getSharedPreferences("MY_APP", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("token", res.getToken());
+                    editor.putString("refreshToken", res.getRefreshToken());
+                    editor.apply();
+
+                    Intent home = new Intent(getActivity(), MainActivity.class);
+                    startActivity(home);
+                    getActivity().finish();
+                }
                 else
                     Toast.makeText(getActivity(),"Error en los datos del nuevo usuario",Toast.LENGTH_SHORT).show();
             }

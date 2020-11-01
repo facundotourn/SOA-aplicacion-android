@@ -1,8 +1,13 @@
 package com.example.soa2020ea3.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class AuthTokens {
     private String token;
+
+    @SerializedName("token_refresh")
     private String refreshToken;
+
     private Boolean success;
 
     public AuthTokens(String token, String refreshToken, Boolean success) {

@@ -10,6 +10,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.Bundle;
@@ -25,7 +26,7 @@ public class AuthActivity extends AppCompatActivity {
     private TextView tv_connection_status;
     private TextView tv_batery_status;
 
-    private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver(){
+    private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context ctxt, Intent intent) {
             int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
@@ -36,6 +37,13 @@ public class AuthActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (isUserLoggedIn()) {
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
+            finish();
+        }
+
         setContentView(R.layout.activity_auth);
 
         ViewPager viewPager = findViewById(R.id.viewPager);
@@ -93,5 +101,12 @@ public class AuthActivity extends AppCompatActivity {
             // Log error
         }
         return false;
+    }
+
+    public boolean isUserLoggedIn() {
+        SharedPreferences preferences = this.getSharedPreferences("MY_APP",Context.MODE_PRIVATE);
+        String retrivedToken  = preferences.getString("token",null);
+
+        return retrivedToken != null;
     }
 }

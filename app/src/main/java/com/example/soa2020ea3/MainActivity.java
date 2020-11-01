@@ -1,6 +1,10 @@
 package com.example.soa2020ea3;
 
 import android.os.Bundle;
+
+import com.example.soa2020ea3.model.EventRequestBody;
+import com.example.soa2020ea3.model.EventResponse;
+import com.example.soa2020ea3.services.EventService;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
@@ -14,9 +18,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
 import com.example.soa2020ea3.ui.main.SectionsPagerAdapter;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import static com.example.soa2020ea3.network.RetrofitInstance.getRetrofitInstance;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -73,6 +86,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void enviarEvento(String type, String description) {
-        Log.d("VOY A ENVIAR UN EVENTO", description);
+        Retrofit retrofit = getRetrofitInstance("http://so-unlam.net.ar/api/api/");
+        EventService eventService = retrofit.create(EventService.class);
+
+        Call<EventResponse> call = eventService.postEvent(new EventRequestBody("TEST", type, description));
+        call.enqueue(new Callback<EventResponse>() {
+            @Override
+            public void onResponse(Call<EventResponse> call, Response<EventResponse> response) {
+                Toast.makeText(MainActivity.this, "Evento enviado.", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<EventResponse> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Ocurrió un error al intentar enviar el evento", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
