@@ -130,7 +130,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void cerrarSesion() {
         SharedPreferences preferences = getSharedPreferences("MY_APP", Context.MODE_PRIVATE);
-        preferences.edit().remove("token").remove("refreshToken").commit();
+        preferences.edit()
+                .remove("token")
+                .remove("refreshToken")
+                .remove("lastGifs")
+                .remove("lastQuery")
+                .commit();
 
         Intent i = new Intent(this, AuthActivity.class);
         startActivity(i);
