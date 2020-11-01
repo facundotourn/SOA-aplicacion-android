@@ -16,9 +16,13 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.soa2020ea3.model.EventRequestBody;
+import com.example.soa2020ea3.model.EventResponse;
 import com.example.soa2020ea3.model.Gif;
 import com.example.soa2020ea3.model.GifSearchResponse;
+import com.example.soa2020ea3.services.EventDispatcher;
 import com.example.soa2020ea3.services.GifsService;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
@@ -67,7 +71,9 @@ public class GifsFragment extends Fragment {
         btn_search_gifs.setOnClickListener((val) -> {
             if (et_query.getText().toString() != "") {
                 buscarGifs(et_query.getText().toString());
-                Toast.makeText(getActivity(),"Buscando...",Toast.LENGTH_SHORT).show();
+                btn_search_gifs.setEnabled(false);
+                btn_search_gifs.setClickable(false);
+                Toast.makeText(getActivity(),"Cargando...",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -82,8 +88,6 @@ public class GifsFragment extends Fragment {
         call.enqueue(new Callback<GifSearchResponse>() {
             @Override
             public void onResponse(Call<GifSearchResponse> call, Response<GifSearchResponse> response) {
-                Toast.makeText(getActivity(),"Mostrando los 5 gifs más populares",Toast.LENGTH_SHORT).show();
-
                 ArrayList<Gif> gifs = (ArrayList<Gif>) response.body().getGifs();
 
                 for (int i = 0; i < gifs.size(); i++) {
@@ -95,18 +99,28 @@ public class GifsFragment extends Fragment {
                             .into(gif_results.get(i));
                 }
 
+                Callback<EventResponse> callback = new Callback<EventResponse>() {
+                    @Override
+                    public void onResponse(Call<EventResponse> call, Response<EventResponse> response) {
+                    }
+                    @Override
+                    public void onFailure(Call<EventResponse> call, Throwable t) {
+                    }
+                };
 
                 String type = "CONSULTA_GIFS";
                 String description = "El usuario consulto gifs.";
 
                 MainActivity main = (MainActivity) getActivity();
-                main.enviarEvento(type, description, false);
+                EventDispatcher.enviarEvento(getActivity(), new EventRequestBody(type, description), callback);
+
+                btn_search_gifs.setEnabled(true);
+                btn_search_gifs.setClickable(true);
             }
 
             @Override
             public void onFailure(Call<GifSearchResponse> call, Throwable t) {
-                Toast.makeText(getActivity(),"Explotó todo",Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(getActivity(),"Ocurrió un error al intentar consultar los GIFs",Toast.LENGTH_SHORT).show();
             }
         });
     }

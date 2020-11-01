@@ -64,6 +64,9 @@ public class RegisterFragment extends Fragment {
 
             registrar(usr);
             Toast.makeText(getActivity(),"Registrando...",Toast.LENGTH_SHORT).show();
+
+            register_button.setEnabled(false);
+            register_button.setClickable(false);
         });
 
         return rootView;
@@ -96,11 +99,17 @@ public class RegisterFragment extends Fragment {
                 }
                 else
                     Toast.makeText(getActivity(),"Error en los datos del nuevo usuario",Toast.LENGTH_SHORT).show();
+
+                register_button.setEnabled(true);
+                register_button.setClickable(true);
             }
 
             @Override
             public void onFailure(Call<AuthTokens> call, Throwable t) {
                 Toast.makeText(getActivity(),"Error interno del servidor",Toast.LENGTH_SHORT).show();
+
+                register_button.setEnabled(true);
+                register_button.setClickable(true);
             }
         });
     }

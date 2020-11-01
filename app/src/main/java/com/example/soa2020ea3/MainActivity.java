@@ -71,7 +71,17 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_logout:
-                enviarEvento("CIERRE_SESIÓN", "El usuario cerró la sesión de su cuenta", false);
+                EventDispatcher.enviarEvento(
+                        this,
+                        new EventRequestBody("CIERRE_SESIÓN", "El usuario cerró la sesión de su cuenta"),
+                        new Callback<EventResponse>() {
+                    @Override
+                    public void onResponse(Call<EventResponse> call, Response<EventResponse> response) {
+                    }
+                    @Override
+                    public void onFailure(Call<EventResponse> call, Throwable t) {
+                    }
+                });
 
                 cerrarSesion();
                 finish();
@@ -116,28 +126,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return title;
         }
-    }
-
-    public void enviarEvento(String type, String description, Boolean showToast) {
-        EventRequestBody requestBody = new EventRequestBody(type, description);
-
-        Callback<EventResponse> callback = new Callback<EventResponse>() {
-            @Override
-            public void onResponse(Call<EventResponse> call, Response<EventResponse> response) {
-                if (showToast) {
-                    Toast.makeText(MainActivity.this, "Evento enviado.", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<EventResponse> call, Throwable t) {
-                if (showToast) {
-                    Toast.makeText(MainActivity.this, "Ocurrió un error al intentar enviar el evento", Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
-
-        EventDispatcher.enviarEvento(this, requestBody, callback);
     }
 
     public void cerrarSesion() {

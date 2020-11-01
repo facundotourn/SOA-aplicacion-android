@@ -19,9 +19,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.soa2020ea3.model.EventRequestBody;
+import com.example.soa2020ea3.model.EventResponse;
+import com.example.soa2020ea3.services.EventDispatcher;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.content.Context.SENSOR_SERVICE;
 import static androidx.core.content.ContextCompat.getSystemService;
@@ -114,16 +123,56 @@ public class SensorsFragment extends Fragment implements SensorEventListener {
             String type = "ACELEROMETRO_VALUES";
             String description = "Valor en X: " + xValue.getText().toString() + ", valor en Y: " + yValue.getText().toString() + ", valor en Z: " + zValue.getText().toString();
 
+            Callback<EventResponse> callback = new Callback<EventResponse>() {
+                @Override
+                public void onResponse(Call<EventResponse> call, Response<EventResponse> response) {
+                    Toast.makeText(getActivity(), "Evento enviado.", Toast.LENGTH_SHORT).show();
+
+                    btn_acelerometro.setClickable(true);
+                    btn_acelerometro.setEnabled(true);
+                }
+                @Override
+                public void onFailure(Call<EventResponse> call, Throwable t) {
+                    Toast.makeText(getActivity(), "Ocurrió un error al intentar enviar el evento", Toast.LENGTH_SHORT).show();
+
+                    btn_acelerometro.setClickable(true);
+                    btn_acelerometro.setEnabled(true);
+                }
+            };
+
             MainActivity main = (MainActivity) getActivity();
-            main.enviarEvento(type, description, true);
+            EventDispatcher.enviarEvento(getActivity(), new EventRequestBody(type, description), callback);
+
+            btn_acelerometro.setClickable(false);
+            btn_acelerometro.setEnabled(false);
         });
 
         btn_luz.setOnClickListener((val) -> {
             String type = "LIGHT_VALUES";
             String description = lumenValue.getText().toString() + " lumen por metro cuadrado";
 
+            Callback<EventResponse> callback = new Callback<EventResponse>() {
+                @Override
+                public void onResponse(Call<EventResponse> call, Response<EventResponse> response) {
+                    Toast.makeText(getActivity(), "Evento enviado.", Toast.LENGTH_SHORT).show();
+
+                    btn_luz.setClickable(true);
+                    btn_luz.setEnabled(true);
+                }
+                @Override
+                public void onFailure(Call<EventResponse> call, Throwable t) {
+                    Toast.makeText(getActivity(), "Ocurrió un error al intentar enviar el evento", Toast.LENGTH_SHORT).show();
+
+                    btn_luz.setClickable(true);
+                    btn_luz.setEnabled(true);
+                }
+            };
+
             MainActivity main = (MainActivity) getActivity();
-            main.enviarEvento(type, description, true);
+            EventDispatcher.enviarEvento(getActivity(), new EventRequestBody(type, description), callback);
+
+            btn_luz.setClickable(false);
+            btn_luz.setEnabled(false);
         });
 
         return rootView;
@@ -142,6 +191,7 @@ public class SensorsFragment extends Fragment implements SensorEventListener {
                 break;
             case Sensor.TYPE_LIGHT:
                 lumenValue.setText(String.format("%.2f", values[0]));
+
                 break;
             default:
                 break;

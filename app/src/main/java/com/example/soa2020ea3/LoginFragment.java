@@ -49,6 +49,9 @@ public class LoginFragment extends Fragment {
         login_button.setOnClickListener((val) -> {
             loguear(et_email.getText().toString(), et_password.getText().toString());
             Toast.makeText(getActivity(),"Ingresando...",Toast.LENGTH_SHORT).show();
+
+            login_button.setClickable(false);
+            login_button.setEnabled(false);
         });
 
         return rootView;
@@ -80,11 +83,17 @@ public class LoginFragment extends Fragment {
                     getActivity().finish();
                 } else
                     Toast.makeText(getActivity(),"Error en las credenciales",Toast.LENGTH_SHORT).show();
+
+                login_button.setClickable(true);
+                login_button.setEnabled(true);
             }
 
             @Override
             public void onFailure(Call<AuthTokens> call, Throwable t) {
                 Toast.makeText(getActivity(),"Error interno del servidor",Toast.LENGTH_SHORT).show();
+
+                login_button.setClickable(true);
+                login_button.setEnabled(true);
             }
         });
     }
